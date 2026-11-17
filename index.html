@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>임장메이트 · 메모 한 줄이 판단 근거가 되는 임장 노트</title>
-  <meta name="description" content="집 보러 다니는 모든 임장을 위한 AI 임장 노트. 사진과 메모 한 줄을 남기면 AI가 체크리스트로 정리하고, 후보 물건을 같은 기준으로 비교해 줍니다.">
-  <meta property="og:title" content="임장메이트 · 메모 한 줄이 입찰 근거가 되는 임장 노트">
+  <title>임장메이트 · 임장 기록은 한 곳에, 비교는 AI가</title>
+  <meta name="description" content="집 보러 다니는 모든 임장을 위한 AI 임장 노트. 사진·체크리스트·메모를 장소별로 한 앱에 남기면, AI가 아파트별·주소별로 모아 비교표를 만들어 줍니다.">
+  <meta property="og:title" content="임장메이트 · 임장 기록은 한 곳에, 비교는 AI가">
   <meta property="og:description" content="하루 다섯 곳 임장해도, 어느 물건이 어땠는지 헷갈리지 않게. 출시 알림을 신청하고 얼리버드 혜택을 받아 보세요.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#3940b3">
@@ -46,7 +46,7 @@
       <div>
         <p class="eyebrow">재테크부터 내 집 마련까지, AI 임장 노트</p>
         <h1>하루 다섯 곳 임장해도,<br>결정할 땐 <em>근거</em>만 남게.</h1>
-        <p class="hero-sub">주소 하나로 시작하세요. 현장에서 사진 몇 장과 메모 한 줄만 남기면 임장메이트가 체크리스트로 정리하고, 후보 물건을 같은 기준으로 나란히 비교해 줍니다.</p>
+        <p class="hero-sub">사진·체크리스트·메모를 장소별로 한 앱에 남기세요. 기록이 쌓이면 AI가 아파트별·주소별로 모아 같은 기준의 비교표를 만들어 줍니다.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#signup" data-cta="hero_signup">출시 알림 신청하기</a>
           <a class="btn btn-ghost" href="#pricing" data-cta="hero_pricing">얼리버드 가격 보기</a>
@@ -54,16 +54,16 @@
       </div>
 
       <div class="hero-visual" aria-label="임장메이트 앱 화면 예시">
-        <div class="float-note n1"><small>AI 정리</small>우편물 적체 → 점유·체납 확인 필요</div>
-        <div class="phone" role="img" aria-label="임장 기록 작성 화면: 경매 물건 정보, 사진, 메모, AI 체크리스트">
+        <div class="float-note n1"><small>직접 체크</small>채광·소음은 탭 한 번, 1~5점으로</div>
+        <div class="phone" role="img" aria-label="임장 기록 화면: 사진, 직접 체크한 체크리스트 점수, 메모">
           <div class="phone-status"><span>9:41</span><span>●●● ▮</span></div>
-          <div class="phone-bar"><span class="back">‹</span>임장 기록 작성</div>
+          <div class="phone-bar"><span class="back">‹</span>임장 기록</div>
           <div class="phone-body">
             <div class="p-card p-place">
               <div class="p-thumb"></div>
               <div>
                 <b>아현동 ○○아파트 84㎡</b>
-                <small><span class="p-tag">경매</span>2026타경 1xxxx · 마포구</small>
+                <small><span class="p-tag">실거래가</span>12.4억 · 마포구 아현동</small>
               </div>
             </div>
             <div>
@@ -71,22 +71,22 @@
               <div class="p-photos"><div class="p-photo"></div><div class="p-photo b"></div><div class="p-photo add">+</div></div>
             </div>
             <div>
-              <div class="p-label">메모</div>
-              <div class="p-memo">역까지 10분인데 언덕 가파름. 1층 우편함에 고지서 쌓여 있고 복도 천장에 누수 자국.</div>
+              <div class="p-label">체크리스트 <small>(탭해서 직접 체크)</small></div>
+              <div class="p-check">
+                <div class="p-row"><span>채광</span><span class="p-rate" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+                <div class="p-row"><span>소음</span><span class="p-rate" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+                <div class="p-row"><span>교통</span><span class="p-rate" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+                <div class="p-row"><span>관리 상태</span><span class="p-rate" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+              </div>
             </div>
             <div>
-              <div class="p-label">AI 체크리스트</div>
-              <div class="p-check">
-                <div class="p-row"><span>교통</span><div class="p-chips"><i class="p-chip on">도보 10분</i></div></div>
-                <div class="p-row"><span>누수·결로</span><div class="p-chips"><i class="p-chip warn">흔적 있음</i></div></div>
-                <div class="p-row"><span>점유 흔적</span><div class="p-chips"><i class="p-chip warn">우편물 적체</i></div></div>
-                <div class="p-row"><span>소음</span><div class="p-chips"><i class="p-chip">미확인</i></div></div>
-              </div>
+              <div class="p-label">메모 <small>(체크리스트에 없는 것)</small></div>
+              <div class="p-memo">1층 우편함에 고지서 쌓여 있음. 관리사무소에 관리비 물어보기.</div>
             </div>
             <div class="p-btn">저장하기</div>
           </div>
         </div>
-        <div class="float-note n2"><small>다음 질문</small>“체납 관리비가 얼마인가요?” 관리사무소에 확인</div>
+        <div class="float-note n2"><small>한 화면에</small>사진·체크리스트·메모가 장소별로 모여요</div>
       </div>
     </div>
   </section>
@@ -139,69 +139,95 @@
           <li class="reveal">
             <span class="step-no">2</span>
             <div>
-              <h3>사진과 메모 한 줄만 남기기</h3>
-              <p>현장에서 느낀 걸 짧게 적으면 AI가 교통·경사·채광·누수·관리 상태·점유 흔적 같은 항목으로 나눠 체크리스트 초안을 만들어요.</p>
+              <h3>사진·체크리스트·메모를 한 곳에</h3>
+              <p>가기 전엔 확인할 항목을 체크리스트로 챙기고, 현장에선 채광·소음·교통을 탭 한 번으로 점수 매겨요. 체크리스트에 없는 건 메모로. 장소별로 한 화면에 모여서 갤러리와 메모 앱을 오갈 필요가 없어요.</p>
             </div>
           </li>
           <li class="reveal">
             <span class="step-no">3</span>
             <div>
-              <h3>같은 기준으로 후보 비교</h3>
-              <p>여러 후보를 공통 항목으로 나란히 놓고, 확인 못 한 항목은 2차 임장이나 관리사무소·중개사무소에 물어볼 질문으로 돌려받아요.</p>
+              <h3>비교는 AI가, 아파트별·주소별로</h3>
+              <p>기록이 쌓이면 AI가 아파트별·주소별로 모아 같은 기준의 비교표를 만들어요. 체크하지 않은 항목은 2차 임장이나 관리사무소·중개사무소에 물어볼 질문으로 돌려받아요.</p>
             </div>
           </li>
         </ol>
       </div>
 
-      <div class="how-visual reveal" aria-label="후보 비교 화면 예시">
-        <div class="phone" role="img" aria-label="후보 물건 비교 화면">
+      <div class="how-visual reveal" aria-label="앱 홈 화면과 임장 체크리스트 화면 예시">
+        <div class="phone" role="img" aria-label="홈 화면: 주변 정보, 임장 체크리스트, 임장 기록, AI 비교 메뉴와 내 임장노트">
           <div class="phone-status"><span>9:41</span><span>●●● ▮</span></div>
-          <div class="phone-bar"><span class="back">‹</span>후보 비교</div>
-          <div class="phone-body">
-            <div class="p-card">
-              <div class="cmp-head"><span></span><span>A 아현동</span><span>B 공덕동</span></div>
-              <div class="cmp-row"><b>최저가</b><span>8.9억</span><span>10.2억</span></div>
-              <div class="cmp-row"><b>실거래가</b><span>12.4억</span><span>13.1억</span></div>
-              <div class="cmp-row"><b>역까지</b><span>도보 10분</span><span class="good">도보 5분</span></div>
-              <div class="cmp-row"><b>경사</b><span class="bad">가파름</span><span class="good">평지</span></div>
-              <div class="cmp-row"><b>누수·결로</b><span class="bad">흔적 있음</span><span class="good">없음</span></div>
-              <div class="cmp-row"><b>점유 흔적</b><span class="bad">우편물 적체</span><span class="unk">미확인</span></div>
-              <div class="cmp-row" style="border:0"><b>소음</b><span class="unk">미확인</span><span>보통</span></div>
+          <div class="phone-body" style="padding-top:6px">
+            <div class="h-top"><span>임장메이트</span><span aria-hidden="true">🔔</span></div>
+            <div class="h-greet">오늘은 어디로<br>임장 가볼까요?</div>
+            <div class="h-search">⌕ 지역, 아파트 검색</div>
+            <div class="h-tiles">
+              <div class="h-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.2A7 7 0 0 1 19 9.8C19 14.8 12 21 12 21z"/><circle cx="12" cy="10" r="2.5"/></svg>주변 정보</div>
+              <div class="h-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>임장 체크리스트</div>
+              <div class="h-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg>임장 기록</div>
+              <div class="h-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="7" height="14" rx="2"/><rect x="14" y="5" width="7" height="14" rx="2"/></svg>AI 비교</div>
             </div>
-            <div class="p-q"><b>2차 임장 질문 3개</b>B 공덕동: 계량기 돌아가는지 확인하기 · A 아현동: 저녁 도로 소음 어떤가요?</div>
+            <div class="p-label" style="margin:2px 0 -4px">내 임장노트</div>
+            <div class="h-note"><div class="p-thumb"></div><div><b>아현동 ○○아파트</b><small>11.16 · 마포구</small></div><em>기록 3개</em></div>
+            <div class="h-note"><div class="p-thumb"></div><div><b>공덕동 △△아파트</b><small>11.16 · 마포구</small></div><em>기록 2개</em></div>
+          </div>
+          <div class="p-nav"><span class="on">홈</span><span>지도</span><span class="plus">+</span><span>비교</span><span>마이</span></div>
+        </div>
+        <div class="phone" role="img" aria-label="임장 체크리스트 화면: 외부 환경, 단지·시설, 세대 내부 항목">
+          <div class="phone-status"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="phone-bar"><span class="back">‹</span>임장 체크리스트</div>
+          <div class="phone-body">
+            <div class="p-card ck-group">
+              <b>외부 환경</b>
+              <div class="ck"><i class="on"></i>역까지 걸어보기</div>
+              <div class="ck"><i class="on"></i>주변 상권 둘러보기</div>
+              <div class="ck"><i></i>저녁 도로 소음 확인</div>
+            </div>
+            <div class="p-card ck-group">
+              <b>단지·시설</b>
+              <div class="ck"><i class="on"></i>주차장 상태 확인</div>
+              <div class="ck"><i></i>관리 상태 보기</div>
+            </div>
+            <div class="p-card ck-group">
+              <b>세대 내부</b>
+              <div class="ck"><i></i>채광·환기 확인</div>
+              <div class="ck"><i></i>누수·결로 확인</div>
+            </div>
+            <div class="p-btn">임장 시작</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ AI 정리 예시 ============ -->
+  <!-- ============ AI 비교 ============ -->
   <section class="section alt" id="ai">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">AI CHECKLIST</p>
-        <h2 class="section-title">메모 한 줄이<br><em>근거가 달린</em> 체크리스트로</h2>
-        <p class="section-sub">AI가 대신 판단하지 않아요. 내가 본 것을 항목별로 정리하고, 원문 메모와 연결해 둡니다.</p>
+        <p class="eyebrow">AI COMPARISON</p>
+        <h2 class="section-title">기록은 내가,<br><em>비교표는 AI가</em></h2>
+        <p class="section-sub">체크와 메모는 직접 남기세요. AI는 쌓인 기록을 아파트별·주소별로 모아 같은 기준의 비교표와 요약을 만들어 줍니다.</p>
       </div>
       <div class="ai-grid reveal">
         <div class="ai-note">
-          <small>현장에서 남긴 메모</small>
-          <blockquote>“역에서 10분인데 언덕이 가파름. 1층 우편함에 고지서가 쌓여 있고, 복도 천장에 누수 자국.”</blockquote>
+          <small>AI 비교 요약</small>
+          <blockquote>“B 공덕동은 역까지 5분·평지라 이동이 편하고, A 아현동은 채광 점수가 더 높아요. B 공덕동은 아직 소음을 체크하지 않았어요.”</blockquote>
+          <p class="next"><b>다음 임장 질문</b>공덕동 저녁 시간에 도로 소음 확인하기</p>
         </div>
         <div class="table-wrap">
           <table class="ir-table">
-            <thead><tr><th scope="col">항목</th><th scope="col">AI 정리</th><th scope="col">근거 · 다음 행동</th></tr></thead>
+            <thead><tr><th scope="col">항목</th><th scope="col">A 아현동</th><th scope="col">B 공덕동</th><th scope="col">출처</th></tr></thead>
             <tbody>
-              <tr><td>교통</td><td class="ai">도보 약 10분</td><td>내 관찰로 표시</td></tr>
-              <tr><td>보행 환경</td><td class="ai">경사 가파름</td><td>원문 메모와 연결</td></tr>
-              <tr><td>점유 흔적</td><td class="warn">우편물 적체</td><td>질문: “체납 관리비가 얼마인가요?” (관리사무소)</td></tr>
-              <tr><td>누수·결로</td><td class="warn">복도 천장 누수 자국</td><td>원문 메모와 연결 · 세대 내부 확인 필요</td></tr>
-              <tr><td>소음</td><td>미확인</td><td>질문: “저녁 도로 소음은 어떤가요?”</td></tr>
+              <tr><td>실거래가 (84㎡)</td><td>12.4억</td><td>13.1억</td><td>자동 연결</td></tr>
+              <tr><td>역까지</td><td>도보 10분</td><td class="ai">도보 5분</td><td>자동 연결</td></tr>
+              <tr><td>채광</td><td><span class="p-rate" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td><td><span class="p-rate" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td><td>내 체크</td></tr>
+              <tr><td>소음</td><td><span class="p-rate" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td><td class="unk">미체크</td><td>내 체크</td></tr>
+              <tr><td>관리 상태</td><td><span class="p-rate" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td><td><span class="p-rate" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td><td>내 체크</td></tr>
+              <tr><td>메모</td><td>언덕 가파름</td><td>1층에 상가 있음</td><td>내 메모</td></tr>
             </tbody>
           </table>
         </div>
       </div>
-      <p class="disclaimer reveal">※ 임장메이트는 현장 관찰을 기록·비교하는 도구예요. 집을 대신 골라 주거나 권리분석·가격 판단을 대신하지 않습니다.</p>
+      <p class="disclaimer reveal">※ AI는 내가 남긴 기록과 공공 데이터만으로 비교표를 만들고, 요약은 언제든 직접 고칠 수 있어요. 집을 대신 골라 주거나 권리분석·가격 판단을 대신하지 않습니다.</p>
     </div>
   </section>
 
@@ -220,7 +246,7 @@
             <tr><td>노션·엑셀 임장 템플릿</td><td>빈칸을 전부 손으로</td><td>연결 안 됨</td><td>표로 가능</td><td>없음</td></tr>
             <tr><td>메모 앱 + 갤러리</td><td>빠르지만 뒤죽박죽</td><td>따로 저장</td><td>다시 정리해야 함</td><td>없음</td></tr>
             <tr><td>매물·경매 사이트, 지도 앱</td><td>개인 기록 불가</td><td>해당 없음</td><td>가격·시설만</td><td>없음</td></tr>
-            <tr class="hl"><td><strong>임장메이트</strong></td><td>메모 한 줄로 정리</td><td>장소별 자동 연결</td><td>공통 항목으로 정렬</td><td>미확인 항목에서 생성</td></tr>
+            <tr class="hl"><td><strong>임장메이트</strong></td><td>탭 한 번 체크 + 메모</td><td>장소별 자동 연결</td><td>AI가 아파트·주소별 비교표</td><td>미확인 항목에서 생성</td></tr>
           </tbody>
         </table>
       </div>
@@ -283,8 +309,8 @@
           <p class="early"></p>
           <ul>
             <li>장소별 임장 노트</li>
-            <li>AI 체크리스트 초안</li>
-            <li>후보 2곳 비교</li>
+            <li>체크리스트·사진·메모 기록</li>
+            <li>AI 비교표 (후보 2곳)</li>
           </ul>
           <a class="btn btn-ghost btn-block" href="#signup" data-cta="pricing_free">무료로 시작 알림 받기</a>
         </article>
@@ -440,8 +466,8 @@
           <p>아니요. 개인 기록은 기본 비공개예요. 나중에 임장 후기 기능이 생기더라도, 직접 선택한 기록만 공개됩니다.</p>
         </details>
         <details>
-          <summary>AI가 잘못 정리하면 어떡하죠?</summary>
-          <p>AI가 정리한 모든 항목은 원문 메모와 연결돼 있어 바로 확인할 수 있고, 언제든 직접 고칠 수 있어요. 메모에 근거가 없는 항목은 채우지 않고 ‘미확인’으로 남겨 둡니다.</p>
+          <summary>AI는 정확히 뭘 해 주나요?</summary>
+          <p>체크와 메모는 직접 남기고, AI는 쌓인 기록을 아파트별·주소별로 모아 비교표와 요약을 만들어요. 요약은 모두 내가 남긴 기록과 공공 데이터에서만 나오고, 언제든 직접 고칠 수 있어요. 체크하지 않은 항목은 지어내지 않고 ‘미체크’로 남겨 다음 임장 질문으로 알려 드려요.</p>
         </details>
         <details>
           <summary>사전 예약하면 바로 결제되나요?</summary>
