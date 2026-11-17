@@ -2,231 +2,500 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- ✏️ 실습 0. 브라우저 탭에 보이는 제목이에요. 내 이름으로 바꿔 보세요 -->
-  <title>홍길동의 밸런스 게임</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>임장메이트 · 경매·재테크 임장을 입찰 근거로</title>
+  <meta name="description" content="경매·재테크 임장러를 위한 AI 임장 노트. 사진과 메모 한 줄을 남기면 AI가 체크리스트로 정리하고, 후보 물건을 같은 기준으로 비교해 줍니다.">
+  <meta property="og:title" content="임장메이트 · 메모 한 줄이 입찰 근거가 되는 임장 노트">
+  <meta property="og:description" content="하루 다섯 곳 임장해도, 어느 물건이 어땠는지 헷갈리지 않게. 출시 알림을 신청하고 얼리버드 혜택을 받아 보세요.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#3940b3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%233940b3'/%3E%3Cpath d='M16 7c-4 0-7 3-7 6.8 0 5 7 11.2 7 11.2s7-6.2 7-11.2C23 10 20 7 16 7zm0 9.4a2.6 2.6 0 110-5.2 2.6 2.6 0 010 5.2z' fill='%23fff'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <!-- 생김새(색, 글자 크기)는 style.css 파일에 따로 있어요 -->
   <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script src="track.js" defer></script>
+  <script src="main.js" defer></script>
 </head>
 <body>
-  <main>
 
-    <!-- =========================================================
-         화면 1. 자기소개
-         ========================================================= -->
-    <section class="screen" id="intro">
-      <p class="label">Chiwon Vibe · 나의 첫 배포</p>
-
-      <!-- ✏️ 실습 1. "홍길동"을 내 이름으로 바꿔 보세요 -->
-      <h1>안녕하세요,<br><em id="owner-name">홍길동</em>입니다.</h1>
-
-      <!-- ✏️ 실습 2. 오른쪽 칸(dd)을 내 정보로 바꿔 보세요.
-           줄을 더 넣고 싶으면 <div>...</div> 한 덩어리를 복사해서 붙이면 돼요.
-           예: <div><dt>좋아하는 음식</dt><dd>떡볶이</dd></div> -->
-      <dl class="profile">
-        <div><dt>나이</dt><dd>20살</dd></div>
-        <div><dt>소속</dt><dd>OO대학교 OO학과</dd></div>
-        <div><dt>MBTI</dt><dd>ENFP</dd></div>
-        <div><dt>요즘 빠진 것</dt><dd>러닝</dd></div>
-      </dl>
-
-      <!-- ✏️ 실습 3. 나를 한 줄로 소개해 보세요 -->
-      <p class="lead">저를 얼마나 잘 아는지, 밸런스 게임으로 확인해 보세요!</p>
-
-      <button class="btn-primary" type="button" id="start-btn">밸런스 게임 시작하기 →</button>
-    </section>
-
-
-    <!-- =========================================================
-         화면 2. 밸런스 게임
-         ========================================================= -->
-    <section class="screen" id="game" hidden>
-      <div class="progress">
-        <p class="label">밸런스 게임 <span id="progress-text">1 / 5</span></p>
-        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-      </div>
-
-      <!-- ✏️ 실습 4. 밸런스 게임 질문 다섯 개를 내 것으로 바꿔 보세요.
-           - <h2> 안은 질문, 두 <button> 안은 보기 A와 B예요.
-           - data-my-answer="A" 부분이 "내 답"이에요. 내가 고르는 쪽을 A 또는 B로 적어요.
-           - 질문을 늘리거나 줄여도 돼요. <div class="question" ...> 부터 </div> 까지 한 덩어리를 복사하거나 지우면 돼요.
-
-           🤖 질문이 안 떠오르면 Claude에게 이렇게 물어보세요:
-              "대학생이 공감할 밸런스 게임 질문 5개를 A vs B 형태로 추천해 줘" -->
-
-      <div class="question" data-my-answer="A">
-        <h2>평생 하나만 먹어야 한다면?</h2>
-        <div class="choices">
-          <button type="button" data-choice="A">짜장면</button>
-          <span class="vs">VS</span>
-          <button type="button" data-choice="B">짬뽕</button>
-        </div>
-      </div>
-
-      <div class="question" data-my-answer="B">
-        <h2>시험 기간, 나는?</h2>
-        <div class="choices">
-          <button type="button" data-choice="A">벼락치기 밤샘</button>
-          <span class="vs">VS</span>
-          <button type="button" data-choice="B">미리미리 계획형</button>
-        </div>
-      </div>
-
-      <div class="question" data-my-answer="A">
-        <h2>여행 갈 때 나는?</h2>
-        <div class="choices">
-          <button type="button" data-choice="A">계획 꼼꼼히</button>
-          <span class="vs">VS</span>
-          <button type="button" data-choice="B">발길 닿는 대로</button>
-        </div>
-      </div>
-
-      <div class="question" data-my-answer="B">
-        <h2>주말에 나는?</h2>
-        <div class="choices">
-          <button type="button" data-choice="A">무조건 밖으로</button>
-          <span class="vs">VS</span>
-          <button type="button" data-choice="B">집에서 충전</button>
-        </div>
-      </div>
-
-      <div class="question" data-my-answer="A">
-        <h2>카톡 답장 스타일은?</h2>
-        <div class="choices">
-          <button type="button" data-choice="A">보자마자 바로</button>
-          <span class="vs">VS</span>
-          <button type="button" data-choice="B">몰아서 한 번에</button>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- =========================================================
-         화면 3. 결과 (나와의 싱크로율)
-         ========================================================= -->
-    <section class="screen" id="result" hidden>
-      <p class="label">결과</p>
-      <h2 class="result-title"><span class="owner-name-copy">홍길동</span> 님과의 싱크로율</h2>
-      <p class="score"><span id="score">0</span>%</p>
-
-      <!-- ✏️ 실습 5. 점수에 따라 나오는 한마디를 바꿔 보세요.
-           data-min="80"은 "80% 이상이면 이 말을 보여 줘"라는 뜻이에요. 위에서부터 차례로 확인해요. -->
-      <ul class="messages" hidden>
-        <li data-min="100">소름! 혹시 제 분신이세요? 🫢</li>
-        <li data-min="80">거의 저예요. 우리 찐친 인정!</li>
-        <li data-min="60">꽤 잘 아시네요 😊</li>
-        <li data-min="40">반반! 앞으로 더 친해져요</li>
-        <li data-min="0">우리… 이제부터 알아가요 🙂</li>
+<header class="site-header" id="top">
+  <div class="container nav">
+    <a class="logo" href="#top" aria-label="임장메이트 홈">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 5 5 5 8.8 5 13.8 12 21 12 21s7-7.2 7-12.2C19 5 16 2 12 2zm0 9.4a2.6 2.6 0 110-5.2 2.6 2.6 0 010 5.2z"/></svg>
+      </span>
+      임장메이트
+    </a>
+    <nav aria-label="주요 메뉴">
+      <ul class="nav-links">
+        <li><a href="#problem">문제</a></li>
+        <li><a href="#how">작동 방식</a></li>
+        <li><a href="#pricing">가격</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ul>
-      <p class="message" id="message"></p>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#signup" data-cta="nav_signup">출시 알림 받기</a>
+  </div>
+</header>
 
-      <!-- 문제별로 내 답과 비교한 목록이 여기에 자동으로 채워져요 -->
-      <ol class="review" id="review"></ol>
+<main>
 
-      <button class="btn-primary" type="button" id="restart-btn">다시 하기</button>
-    </section>
+  <!-- ============ 히어로 ============ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">경매 · 재테크 임장러를 위한 AI 임장 노트</p>
+        <h1>하루 다섯 곳 임장해도,<br>입찰 전엔 <em>근거</em>만 남게.</h1>
+        <p class="hero-sub">사건번호나 주소 하나로 시작하세요. 현장에서 사진 몇 장과 메모 한 줄만 남기면 임장메이트가 체크리스트로 정리하고, 후보 물건을 같은 기준으로 나란히 비교해 줍니다.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#signup" data-cta="hero_signup">출시 알림 신청하기</a>
+          <a class="btn btn-ghost" href="#pricing" data-cta="hero_pricing">얼리버드 가격 보기</a>
+        </div>
+        <ul class="hero-meta">
+          <li>2027년 1월 모바일 웹 베타</li>
+          <li>사전 신청자 대상 무료 베타 초대</li>
+          <li>기본 기록은 평생 무료</li>
+        </ul>
+      </div>
 
+      <div class="hero-visual" aria-label="임장메이트 앱 화면 예시">
+        <div class="float-note n1"><small>AI 정리</small>우편물 적체 → 점유·체납 확인 필요</div>
+        <div class="phone" role="img" aria-label="임장 기록 작성 화면: 경매 물건 정보, 사진, 메모, AI 체크리스트">
+          <div class="phone-status"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="phone-bar"><span class="back">‹</span>임장 기록 작성</div>
+          <div class="phone-body">
+            <div class="p-card p-place">
+              <div class="p-thumb"></div>
+              <div>
+                <b>아현동 ○○아파트 84㎡</b>
+                <small><span class="p-tag">경매</span>2026타경 1xxxx · 마포구</small>
+              </div>
+            </div>
+            <div>
+              <div class="p-label">사진 <small>(최대 10장)</small></div>
+              <div class="p-photos"><div class="p-photo"></div><div class="p-photo b"></div><div class="p-photo add">+</div></div>
+            </div>
+            <div>
+              <div class="p-label">메모</div>
+              <div class="p-memo">역까지 10분인데 언덕 가파름. 1층 우편함에 고지서 쌓여 있고 복도 천장에 누수 자국.</div>
+            </div>
+            <div>
+              <div class="p-label">AI 체크리스트</div>
+              <div class="p-check">
+                <div class="p-row"><span>교통</span><div class="p-chips"><i class="p-chip on">도보 10분</i></div></div>
+                <div class="p-row"><span>누수·결로</span><div class="p-chips"><i class="p-chip warn">흔적 있음</i></div></div>
+                <div class="p-row"><span>점유 흔적</span><div class="p-chips"><i class="p-chip warn">우편물 적체</i></div></div>
+                <div class="p-row"><span>소음</span><div class="p-chips"><i class="p-chip">미확인</i></div></div>
+              </div>
+            </div>
+            <div class="p-btn">저장하기</div>
+          </div>
+        </div>
+        <div class="float-note n2"><small>다음 질문</small>“체납 관리비가 얼마인가요?” 관리사무소에 확인</div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-      <!-- ✏️ 실습 6. 마지막 한 줄도 자유롭게 바꿔 보세요 -->
-      <p>2026.11.18 치원 바이브에서 만들었습니다.<br>GitHub에 저장하고 Vercel이 배포했습니다.</p>
-    </footer>
-  </main>
+  <!-- ============ 문제 ============ -->
+  <section class="section alt" id="problem">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">PROBLEM</p>
+        <h2 class="section-title">임장 다녀오면 남는 건<br>사진 300장과 기억뿐</h2>
+        <p class="section-sub">물건은 열심히 봤는데, 입찰가를 정하려고 앉으면 어느 집이 어땠는지 다시 맞춰 봐야 합니다.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card reveal">
+          <p class="num">01</p>
+          <h3>현장에서도 앱 다섯 개를 오가요</h3>
+          <p>물건 정보는 경매 사이트, 실거래가는 부동산 앱, 교통은 지도 앱, 동네 분위기는 블로그와 카페. 같은 주소를 몇 번씩 검색하느라 정작 눈앞의 건물을 덜 봅니다.</p>
+          <div class="app-strip" aria-hidden="true"><span>경매정보</span><span>실거래가</span><span>지도</span><span>로드뷰</span><span>블로그·카페</span></div>
+        </article>
+        <article class="card reveal">
+          <p class="num">02</p>
+          <h3>기록이 여기저기 흩어져요</h3>
+          <p>사진은 갤러리에, 메모는 메모장과 ‘나에게 보내기’에. 하루 여러 물건을 돌고 나면 “누수 자국이 있던 게 몇 동이었지?”부터 다시 찾아야 합니다.</p>
+        </article>
+        <article class="card reveal">
+          <p class="num">03</p>
+          <h3>물건마다 확인한 게 달라요</h3>
+          <p>A 물건은 관리비 체납을 물어봤고, B 물건은 깜빡했어요. 기준이 매번 달라서 빠뜨린 항목은 입찰 직전에야 발견됩니다.</p>
+        </article>
+      </div>
+      <p class="punchline reveal">수천만 원이 오가는 입찰인데, <em>판단 근거는 갤러리와 기억 속에</em> 있습니다.</p>
+    </div>
+  </section>
 
+  <!-- ============ 작동 방식 ============ -->
+  <section class="section" id="how">
+    <div class="container how-grid">
+      <div>
+        <div class="section-head reveal" style="margin-bottom:40px">
+          <p class="eyebrow">HOW IT WORKS</p>
+          <h2 class="section-title">임장 동선 그대로,<br>세 단계면 끝나요</h2>
+        </div>
+        <ol class="steps">
+          <li class="reveal">
+            <span class="step-no">1</span>
+            <div>
+              <h3>사건번호·주소 하나로 시작</h3>
+              <p>물건을 고르면 실거래가와 역·버스정류장 같은 교통 정보가 그 장소의 임장 노트에 자동으로 붙어요. 앱을 오갈 필요가 없습니다.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="step-no">2</span>
+            <div>
+              <h3>사진과 메모 한 줄만 남기기</h3>
+              <p>현장에서 느낀 걸 짧게 적으면 AI가 교통·경사·채광·누수·관리 상태·점유 흔적 같은 항목으로 나눠 체크리스트 초안을 만들어요.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span class="step-no">3</span>
+            <div>
+              <h3>같은 기준으로 후보 물건 비교</h3>
+              <p>여러 물건을 공통 항목으로 나란히 놓고, 확인 못 한 항목은 2차 임장이나 관리사무소·중개사무소에 물어볼 질문으로 돌려받아요.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
 
-  <!-- =========================================================
-       🔧 여기부터는 화면을 넘기고 점수를 세는 동작 코드예요.
-       실습에서는 고치지 않아도 돼요. 위의 내용만 바꾸면 알아서 반영돼요.
+      <div class="how-visual reveal" aria-label="후보 비교 화면 예시">
+        <div class="phone" role="img" aria-label="후보 물건 비교 화면">
+          <div class="phone-status"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="phone-bar"><span class="back">‹</span>후보 비교</div>
+          <div class="phone-body">
+            <div class="p-card">
+              <div class="cmp-head"><span></span><span>A 아현동</span><span>B 공덕동</span></div>
+              <div class="cmp-row"><b>최저가</b><span>8.9억</span><span>10.2억</span></div>
+              <div class="cmp-row"><b>실거래가</b><span>12.4억</span><span>13.1억</span></div>
+              <div class="cmp-row"><b>역까지</b><span>도보 10분</span><span class="good">도보 5분</span></div>
+              <div class="cmp-row"><b>경사</b><span class="bad">가파름</span><span class="good">평지</span></div>
+              <div class="cmp-row"><b>누수·결로</b><span class="bad">흔적 있음</span><span class="good">없음</span></div>
+              <div class="cmp-row"><b>점유 흔적</b><span class="bad">우편물 적체</span><span class="unk">미확인</span></div>
+              <div class="cmp-row" style="border:0"><b>소음</b><span class="unk">미확인</span><span>보통</span></div>
+            </div>
+            <div class="p-q"><b>2차 임장 질문 3개</b>B 공덕동: 계량기 돌아가는지 확인하기 · A 아현동: 저녁 도로 소음 어떤가요?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-       🤖 기능을 더 넣고 싶다면 이 파일을 통째로 Claude에 붙여넣고 이렇게 부탁해 보세요:
-          "결과 화면에 '친구에게 공유하기' 버튼을 넣어 줘. 디자인은 style.css에 넣고,
-           HTML과 CSS 파일을 나눠서 바뀐 부분을 알려 줘."
-       ========================================================= -->
-  <script>
-    const screens = {
-      intro: document.getElementById('intro'),
-      game: document.getElementById('game'),
-      result: document.getElementById('result'),
-    };
-    const questions = Array.from(document.querySelectorAll('.question'));
-    const ownerName = document.getElementById('owner-name').textContent.trim();
-    let current = 0;
-    let picks = [];
+  <!-- ============ AI 정리 예시 ============ -->
+  <section class="section alt" id="ai">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">AI CHECKLIST</p>
+        <h2 class="section-title">메모 한 줄이<br><em>근거가 달린</em> 체크리스트로</h2>
+        <p class="section-sub">AI가 대신 판단하지 않아요. 내가 본 것을 항목별로 정리하고, 원문 메모와 연결해 둡니다.</p>
+      </div>
+      <div class="ai-grid reveal">
+        <div class="ai-note">
+          <small>현장에서 남긴 메모</small>
+          <blockquote>“역에서 10분인데 언덕이 가파름. 1층 우편함에 고지서가 쌓여 있고, 복도 천장에 누수 자국.”</blockquote>
+        </div>
+        <div class="table-wrap">
+          <table class="ir-table">
+            <thead><tr><th scope="col">항목</th><th scope="col">AI 정리</th><th scope="col">근거 · 다음 행동</th></tr></thead>
+            <tbody>
+              <tr><td>교통</td><td class="ai">도보 약 10분</td><td>내 관찰로 표시</td></tr>
+              <tr><td>보행 환경</td><td class="ai">경사 가파름</td><td>원문 메모와 연결</td></tr>
+              <tr><td>점유 흔적</td><td class="warn">우편물 적체</td><td>질문: “체납 관리비가 얼마인가요?” (관리사무소)</td></tr>
+              <tr><td>누수·결로</td><td class="warn">복도 천장 누수 자국</td><td>원문 메모와 연결 · 세대 내부 확인 필요</td></tr>
+              <tr><td>소음</td><td>미확인</td><td>질문: “저녁 도로 소음은 어떤가요?”</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="pills reveal">
+        <div class="pill">모든 항목은<br>원문 메모와 연결</div>
+        <div class="pill">근거 없으면<br>채우지 않음</div>
+        <div class="pill">미확인 항목은<br>질문으로</div>
+        <div class="pill">언제든<br>직접 수정</div>
+      </div>
+      <p class="disclaimer reveal">※ 임장메이트는 현장 관찰을 기록·비교하는 도구예요. 권리분석이나 입찰가 추천을 대신하지 않습니다.</p>
+    </div>
+  </section>
 
-    document.querySelectorAll('.owner-name-copy').forEach((el) => { el.textContent = ownerName; });
+  <!-- ============ 비교 ============ -->
+  <section class="section" id="compare">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">WHY 임장메이트</p>
+        <h2 class="section-title">지금 쓰는 방법과 뭐가 다른가요?</h2>
+        <p class="section-sub">경매 사이트와 지도 앱은 ‘찾는 단계’까지. 임장메이트는 그다음, <strong>직접 보러 가는 단계</strong>를 맡습니다.</p>
+      </div>
+      <div class="table-wrap reveal">
+        <table class="ir-table" style="min-width:760px">
+          <thead><tr><th scope="col">지금 쓰는 방법</th><th scope="col">현장 입력</th><th scope="col">사진·위치 연결</th><th scope="col">후보 비교</th><th scope="col">다음 질문</th></tr></thead>
+          <tbody>
+            <tr><td>노션·엑셀 임장 템플릿</td><td>빈칸을 전부 손으로</td><td>연결 안 됨</td><td>표로 가능</td><td>없음</td></tr>
+            <tr><td>메모 앱 + 갤러리</td><td>빠르지만 뒤죽박죽</td><td>따로 저장</td><td>다시 정리해야 함</td><td>없음</td></tr>
+            <tr><td>경매 정보 사이트·지도 앱</td><td>개인 기록 불가</td><td>해당 없음</td><td>가격·시설만</td><td>없음</td></tr>
+            <tr class="hl"><td><strong>임장메이트</strong></td><td>메모 한 줄로 정리</td><td>장소별 자동 연결</td><td>공통 항목으로 정렬</td><td>미확인 항목에서 생성</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 
-    function show(name) {
-      Object.entries(screens).forEach(([key, el]) => { el.hidden = key !== name; });
-      window.scrollTo(0, 0);
-    }
+  <!-- ============ 이런 분께 ============ -->
+  <section class="section alt" id="who">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">FOR YOU</p>
+        <h2 class="section-title">임장을 ‘자주’ 다니는 분께 맞춰 만들어요</h2>
+        <p class="section-sub">한 번 이사할 때만이 아니라, 매달 여러 물건을 보러 다니는 분일수록 기록이 쌓이고 비교가 쉬워집니다.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card persona feature reveal">
+          <span class="tag">경매 입찰</span>
+          <h3>주말마다 경매 물건 보러 가는 직장인 투자자</h3>
+          <ul>
+            <li>점유 흔적·관리 상태·누수를 같은 기준으로</li>
+            <li>입찰 전 빠뜨린 확인 항목 자동 체크</li>
+            <li>낙찰 못 한 물건 기록도 다음 입찰에 재활용</li>
+          </ul>
+        </article>
+        <article class="card persona reveal">
+          <span class="tag">재테크 · 투자</span>
+          <h3>여러 단지를 비교하며 매수 타이밍을 보는 분</h3>
+          <ul>
+            <li>실거래가와 현장 체감을 한 화면에</li>
+            <li>역세권·경사·상권을 단지별로 나란히</li>
+            <li>지역별로 쌓이는 나만의 임장 데이터</li>
+          </ul>
+        </article>
+        <article class="card persona reveal">
+          <span class="tag">임장 스터디</span>
+          <h3>함께 임장 다니는 스터디·모임</h3>
+          <ul>
+            <li>팀원별 기록을 하나의 지도에</li>
+            <li>공통 체크리스트로 기준 통일</li>
+            <li>합쳐진 비교 리포트로 토론 시간 단축</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    function showQuestion(index) {
-      questions.forEach((q, i) => { q.hidden = i !== index; });
-      document.getElementById('progress-text').textContent = `${index + 1} / ${questions.length}`;
-      document.getElementById('progress-fill').style.width = `${(index / questions.length) * 100}%`;
-    }
+  <!-- ============ 가격 ============ -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">PRICING</p>
+        <h2 class="section-title">기록은 무료,<br>비교 리포트만 필요할 때</h2>
+        <p class="section-sub">구독 강요 없이, 임장 다니는 기간에만 쓰세요. 사전 예약하시면 출시 때 얼리버드 가격으로 열어 드려요.</p>
+      </div>
+      <div class="pricing">
+        <article class="plan reveal">
+          <h3>기본</h3>
+          <p class="desc">혼자 가볍게 임장 기록</p>
+          <p class="price">0원</p>
+          <p class="early"></p>
+          <ul>
+            <li>장소별 임장 노트</li>
+            <li>AI 체크리스트 초안</li>
+            <li>후보 2곳 비교</li>
+          </ul>
+          <a class="btn btn-ghost btn-block" href="#signup" data-cta="pricing_free">무료로 시작 알림 받기</a>
+        </article>
+        <article class="plan reveal">
+          <h3>비교 리포트</h3>
+          <p class="desc">입찰 직전, 한 번 제대로 비교</p>
+          <p class="price">3,900원 <small>/ 건</small></p>
+          <p class="early">여러 물건 비용·교통·평가 한눈에</p>
+          <ul>
+            <li>후보 무제한 비교</li>
+            <li>미확인 항목 질문 리스트</li>
+            <li>PDF·이미지 내보내기</li>
+          </ul>
+          <button class="btn btn-ghost btn-block" type="button" data-buy="report" data-price="3900" data-plan="비교 리포트 1건">사전 예약하기</button>
+        </article>
+        <article class="plan best reveal">
+          <span class="badge">임장 시즌 추천</span>
+          <h3>30일 임장 패스</h3>
+          <p class="desc">한 달 동안 여러 물건을 집중적으로</p>
+          <p class="price">9,900원 <small>/ 30일</small></p>
+          <p class="early">리포트 3건부터 패스가 이득</p>
+          <ul>
+            <li>비교 리포트 무제한</li>
+            <li>2차 임장 질문 자동 생성</li>
+            <li>지역별 기록 모아보기</li>
+          </ul>
+          <button class="btn btn-primary btn-block" type="button" data-buy="pass30" data-price="9900" data-plan="30일 임장 패스">사전 예약하기</button>
+        </article>
+        <article class="plan reveal">
+          <h3>스터디 팀 플랜</h3>
+          <p class="desc">임장 스터디·투자 모임용</p>
+          <p class="price">19,900원 <small>/ 팀·월</small></p>
+          <p class="early">2027년 하반기 오픈 예정</p>
+          <ul>
+            <li>팀 공유 지도·체크리스트</li>
+            <li>팀원 기록 합친 리포트</li>
+            <li>물건별 코멘트</li>
+          </ul>
+          <button class="btn btn-ghost btn-block" type="button" data-buy="team" data-price="19900" data-plan="스터디 팀 플랜 (1개월)">사전 예약하기</button>
+        </article>
+      </div>
+      <p class="pricing-note">※ 아직 출시 전이라 지금은 결제가 진행되지 않아요. 예약하시면 출시 알림과 함께 얼리버드 혜택을 보내 드립니다.</p>
+    </div>
+  </section>
 
-    function startGame() {
-      current = 0;
-      picks = [];
-      document.querySelectorAll('.choices button').forEach((b) => b.classList.remove('picked'));
-      showQuestion(0);
-      show('game');
-    }
+  <!-- ============ 사전 신청 ============ -->
+  <section class="section signup-band" id="signup">
+    <div class="container signup-wrap">
+      <div class="signup-side">
+        <p class="eyebrow">EARLY ACCESS</p>
+        <h2 class="section-title">출시 알림을 신청하고<br>베타에 먼저 참여하세요</h2>
+        <p class="section-sub">2027년 1월, 모바일 웹 베타를 사전 신청자에게 먼저 엽니다.</p>
+        <ul class="perks">
+          <li><span>1</span>베타 오픈 즉시 알림</li>
+          <li><span>2</span>사전 신청자 무료 베타 초대</li>
+          <li><span>3</span>출시 후 유료 플랜 얼리버드 가격</li>
+          <li><span>4</span>경매 임장 체크리스트 템플릿 선공개</li>
+        </ul>
+      </div>
 
-    function showResult() {
-      let same = 0;
-      const review = document.getElementById('review');
-      review.innerHTML = '';
+      <div class="form-card" id="form-card">
+        <form id="signup-form" novalidate>
+          <h3>출시 알림 신청</h3>
+          <p>30초면 끝나요. 알림 외 용도로는 쓰지 않아요.</p>
 
-      questions.forEach((q, i) => {
-        const mine = q.dataset.myAnswer.trim().toUpperCase();
-        const theirs = picks[i];
-        const label = (c) => q.querySelector(`[data-choice="${c}"]`).textContent.trim();
-        const match = mine === theirs;
-        if (match) same += 1;
+          <div class="field">
+            <label for="contact">연락처 <span class="req">*</span> <span class="opt">휴대폰 번호 또는 이메일</span></label>
+            <input class="input" id="contact" name="contact" type="text" inputmode="email" autocomplete="email" placeholder="010-0000-0000 또는 name@email.com" required>
+          </div>
 
-        const li = document.createElement('li');
-        li.className = match ? 'match' : 'miss';
-        li.innerHTML = `
-          <span class="review-q"></span>
-          <span class="review-a"><span class="who"></span>: <b></b> · 나: <b></b></span>`;
-        li.querySelector('.review-q').textContent = q.querySelector('h2').textContent.trim();
-        li.querySelector('.who').textContent = ownerName;
-        const bolds = li.querySelectorAll('b');
-        bolds[0].textContent = label(mine);
-        bolds[1].textContent = label(theirs);
-        review.appendChild(li);
-      });
+          <div class="field">
+            <span class="label" id="purpose-label">주로 어떤 임장을 다니세요? <span class="req">*</span></span>
+            <div class="choice-grid" role="radiogroup" aria-labelledby="purpose-label">
+              <label class="choice"><input type="radio" name="purpose" value="경매 입찰" required><span>경매 입찰</span></label>
+              <label class="choice"><input type="radio" name="purpose" value="재테크·투자"><span>재테크·투자</span></label>
+              <label class="choice"><input type="radio" name="purpose" value="임장 스터디"><span>임장 스터디</span></label>
+              <label class="choice"><input type="radio" name="purpose" value="실거주 집 구하기"><span>실거주 집 구하기</span></label>
+            </div>
+          </div>
 
-      const score = Math.round((same / questions.length) * 100);
-      document.getElementById('score').textContent = score;
+          <div class="field">
+            <span class="label" id="freq-label">한 달에 몇 곳 정도 임장하세요? <span class="req">*</span></span>
+            <div class="choice-grid three" role="radiogroup" aria-labelledby="freq-label">
+              <label class="choice"><input type="radio" name="frequency" value="1~2곳" required><span>1~2곳</span></label>
+              <label class="choice"><input type="radio" name="frequency" value="3~5곳"><span>3~5곳</span></label>
+              <label class="choice"><input type="radio" name="frequency" value="6곳 이상"><span>6곳 이상</span></label>
+            </div>
+          </div>
 
-      const message = Array.from(document.querySelectorAll('.messages li'))
-        .find((li) => score >= Number(li.dataset.min));
-      document.getElementById('message').textContent = message ? message.textContent : '';
+          <div class="field">
+            <label for="method">지금은 임장 기록을 어떻게 하세요? <span class="opt">(선택)</span></label>
+            <select class="select" id="method" name="method">
+              <option value="">선택해 주세요</option>
+              <option>메모 앱 + 갤러리</option>
+              <option>노션·엑셀 템플릿</option>
+              <option>종이 노트</option>
+              <option>카톡 나에게 보내기</option>
+              <option>따로 기록 안 함</option>
+              <option>기타</option>
+            </select>
+          </div>
 
-      show('result');
-    }
+          <div class="field">
+            <label for="region">관심 지역 <span class="opt">(선택)</span></label>
+            <input class="input" id="region" name="region" type="text" maxlength="40" placeholder="예: 마포구, 수원 영통">
+          </div>
 
-    document.querySelectorAll('.choices button').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        if (picks.length > current) return; // 두 번 눌림 방지
-        picks.push(btn.dataset.choice);
-        btn.classList.add('picked');
-        setTimeout(() => {
-          current += 1;
-          if (current < questions.length) showQuestion(current);
-          else showResult();
-        }, 250);
-      });
-    });
+          <input type="hidden" name="plan" id="plan-field" value="">
+          <!-- 봇 방지용 (사람에게는 안 보임) -->
+          <div class="sr-only" aria-hidden="true"><label>웹사이트<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
-    document.getElementById('start-btn').addEventListener('click', startGame);
-    document.getElementById('restart-btn').addEventListener('click', () => show('intro'));
-  </script>
+          <label class="consent"><input type="checkbox" id="agree" name="agree" required> <span>[필수] 개인정보 수집·이용에 동의합니다.</span></label>
+          <details class="consent-detail">
+            <summary>자세히 보기</summary>
+            수집 항목: 연락처(휴대폰 번호 또는 이메일), 임장 목적·빈도·기록 방법·관심 지역<br>
+            이용 목적: 서비스 출시·베타 알림 발송, 서비스 개선을 위한 통계<br>
+            보유 기간: 출시 알림 발송 후 6개월 또는 동의 철회 시까지<br>
+            동의를 거부할 수 있으며, 이 경우 출시 알림을 받을 수 없습니다.
+          </details>
+
+          <p class="form-error" id="form-error" role="alert"></p>
+          <button class="btn btn-primary btn-block" type="submit" id="submit-btn" data-cta="form_submit">출시 알림 신청하기</button>
+        </form>
+
+        <div class="form-done" id="form-done" hidden>
+          <div class="check" aria-hidden="true">✓</div>
+          <h3>신청이 완료됐어요!</h3>
+          <p>베타가 열리면 가장 먼저 알려 드릴게요.<br>임장 다니는 친구에게도 알려 주세요.</p>
+          <button class="btn btn-ghost" type="button" id="share-btn" data-cta="share">링크 복사하기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="section-title">자주 묻는 질문</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>권리분석이나 입찰가 추천도 해 주나요?</summary>
+          <p>아니요. 임장메이트는 현장에서 직접 본 것을 기록하고 비교하는 도구예요. 권리분석과 입찰가 판단은 직접 하시되, 그 판단의 근거가 되는 현장 기록을 빠짐없이 정리해 드립니다.</p>
+        </details>
+        <details>
+          <summary>언제 쓸 수 있나요?</summary>
+          <p>2027년 1월 모바일 웹 베타를 목표로 만들고 있어요. 출시 알림을 신청하시면 베타가 열릴 때 가장 먼저 연락드립니다. 앱 설치 없이 휴대폰 브라우저에서 바로 쓸 수 있어요.</p>
+        </details>
+        <details>
+          <summary>제 임장 기록이 다른 사람에게 공개되나요?</summary>
+          <p>아니요. 개인 기록은 기본 비공개예요. 나중에 임장 후기 기능이 생기더라도, 직접 선택한 기록만 공개됩니다.</p>
+        </details>
+        <details>
+          <summary>AI가 잘못 정리하면 어떡하죠?</summary>
+          <p>AI가 정리한 모든 항목은 원문 메모와 연결돼 있어 바로 확인할 수 있고, 언제든 직접 고칠 수 있어요. 메모에 근거가 없는 항목은 채우지 않고 ‘미확인’으로 남겨 둡니다.</p>
+        </details>
+        <details>
+          <summary>사전 예약하면 바로 결제되나요?</summary>
+          <p>아니요. 지금은 결제가 진행되지 않아요. 사전 예약하신 분께는 출시 때 얼리버드 가격과 함께 안내를 드리고, 그때 원하시는 경우에만 결제하시면 됩니다.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 마지막 CTA ============ -->
+  <section class="section alt final-cta">
+    <div class="container reveal">
+      <h2 class="section-title">다음 임장부터는<br><em>기록 정리 말고 물건에만</em> 집중하세요</h2>
+      <a class="btn btn-primary" href="#signup" data-cta="final_signup">출시 알림 신청하기</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <span><strong>임장메이트</strong> · Team Lim &amp; Chang · 연세대학교</span>
+    <span>© 2026 임장메이트</span>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="sticky-cta">
+  <a class="btn btn-primary btn-block" href="#signup" data-cta="sticky_signup">출시 알림 신청하기</a>
+</div>
+
+<!-- 가격 버튼 → 사전 예약 모달 -->
+<div class="modal" id="buy-modal" hidden role="dialog" aria-modal="true" aria-labelledby="buy-title">
+  <div class="modal-box">
+    <span class="plan-chip" id="buy-plan"></span>
+    <h3 id="buy-title">사전 예약해 주셔서 감사해요!</h3>
+    <p>임장메이트는 아직 출시 전이라 지금 결제는 진행되지 않아요. 연락처를 남겨 주시면 출시 때 <strong>얼리버드 가격</strong>으로 가장 먼저 열어 드릴게요.</p>
+    <div class="modal-actions">
+      <a class="btn btn-primary" href="#signup" id="buy-go" data-cta="buy_modal_signup">연락처 남기고 얼리버드 받기</a>
+      <button class="btn btn-ghost" type="button" id="buy-close">닫기</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
