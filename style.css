@@ -104,10 +104,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-weight: 800; color: var(--ink); margin: 0 0 24px;
 }
 .hero-sub { font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); margin: 0 0 36px; max-width: 560px; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
-.hero-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; list-style: none; padding: 0; margin: 0; font-size: 15px; color: var(--muted); }
-.hero-meta li { display: flex; align-items: center; gap: 6px; }
-.hero-meta li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-visual {
   background: var(--primary-tint); border-radius: 28px; padding: 36px 24px;
   display: flex; justify-content: center; position: relative;
@@ -165,8 +162,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .card.feature { background: var(--primary); border-color: var(--primary); }
 .card.feature h3, .card.feature .num { color: #fff; }
 .card.feature p { color: #dfe1fb; }
-.app-strip { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
-.app-strip span { font-size: 13px; font-weight: 600; background: var(--bg-alt); color: var(--muted); border-radius: 8px; padding: 4px 10px; }
 
 /* ---------- 작동 방식 ---------- */
 .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
@@ -203,8 +198,6 @@ table.ir-table { width: 100%; border-collapse: collapse; font-size: 16px; min-wi
 .ir-table .ai { color: var(--primary); font-weight: 600; }
 .ir-table .warn { color: var(--danger); font-weight: 600; }
 .ir-table tr.hl td { background: var(--primary-soft); }
-.pills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
-.pill { background: var(--primary-soft); color: var(--primary); font-weight: 700; text-align: center; border-radius: 999px; padding: 14px 16px; font-size: 15px; line-height: 1.35; }
 .disclaimer { margin: 24px 0 0; font-size: 15px; color: var(--muted); }
 
 /* ---------- 대상 ---------- */
@@ -315,8 +308,7 @@ table.ir-table { width: 100%; border-collapse: collapse; font-size: 16px; min-wi
 /* ---------- 반응형 ---------- */
 @media (max-width: 1024px) {
   .pricing { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
-  .pills { grid-template-columns: repeat(2, 1fr); }
-}
+  }
 @media (max-width: 900px) {
   .section { padding: 80px 0; }
   .hero { padding: 40px 0 72px; }
@@ -330,9 +322,7 @@ table.ir-table { width: 100%; border-collapse: collapse; font-size: 16px; min-wi
 @media (max-width: 560px) {
   .container { padding: 0 16px; }
   .pricing { grid-template-columns: 1fr; }
-  .pills { grid-template-columns: 1fr 1fr; }
-  .pill { font-size: 14px; padding: 12px; }
-  .card { padding: 26px 22px; }
+      .card { padding: 26px 22px; }
   .form-card { padding: 28px 20px; }
   .how-visual .phone:last-child { display: none; }
   .hero-cta .btn { flex: 1 1 100%; }

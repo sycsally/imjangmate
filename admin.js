@@ -262,7 +262,7 @@
     pricing_free: "가격 ‘무료로 시작 알림 받기’", form_submit: "폼 ‘신청하기’ 버튼", final_signup: "하단 ‘출시 알림 신청하기’",
     sticky_signup: "모바일 고정 버튼", buy_modal_signup: "예약 팝업 ‘연락처 남기기’", share: "완료 후 ‘링크 복사’"
   };
-  var PLAN_NAMES = { report: "비교 리포트 3,900원", pass30: "30일 임장 패스 9,900원", team: "스터디 팀 플랜 19,900원" };
+  var PLAN_NAMES = { report: "비교 리포트 1,900원", pass30: "30일 임장 패스 9,900원", team: "스터디 팀 플랜 19,900원" };
 
   function renderCtas(f) {
     var g = {};
@@ -395,8 +395,8 @@
       { channel: "카페·커뮤니티", utm_source: "naver_cafe", utm_medium: "post", utm_campaign: "auction_cafe", w: .12, conv: .16 },
       { channel: "직접 유입", utm_source: "", utm_medium: "", utm_campaign: "", w: .08, conv: .05 }
     ];
-    var purposes = ["경매 입찰", "경매 입찰", "재테크·투자", "임장 스터디", "실거주 집 구하기"];
-    var plans = [["report", 3900], ["pass30", 9900], ["team", 19900]];
+    var purposes = ["재테크·경매", "재테크·경매", "내 집 마련·신혼집", "첫 자취·이사", "임장 스터디"];
+    var plans = [["report", 1900], ["pass30", 9900], ["team", 19900]];
     var now = Date.now();
     for (var i = 0; i < 640; i++) {
       var r = rnd(), acc = 0, c = chans[0];
