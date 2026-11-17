@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ✏️ 실습 0. 브라우저 탭에 보이는 제목이에요. 내 이름으로 바꿔 보세요 -->
+  <title>홍길동의 밸런스 게임</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <!-- 생김새(색, 글자 크기)는 style.css 파일에 따로 있어요 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+
+    <!-- =========================================================
+         화면 1. 자기소개
+         ========================================================= -->
+    <section class="screen" id="intro">
+      <p class="label">Chiwon Vibe · 나의 첫 배포</p>
+
+      <!-- ✏️ 실습 1. "홍길동"을 내 이름으로 바꿔 보세요 -->
+      <h1>안녕하세요,<br><em id="owner-name">홍길동</em>입니다.</h1>
+
+      <!-- ✏️ 실습 2. 오른쪽 칸(dd)을 내 정보로 바꿔 보세요.
+           줄을 더 넣고 싶으면 <div>...</div> 한 덩어리를 복사해서 붙이면 돼요.
+           예: <div><dt>좋아하는 음식</dt><dd>떡볶이</dd></div> -->
+      <dl class="profile">
+        <div><dt>나이</dt><dd>20살</dd></div>
+        <div><dt>소속</dt><dd>OO대학교 OO학과</dd></div>
+        <div><dt>MBTI</dt><dd>ENFP</dd></div>
+        <div><dt>요즘 빠진 것</dt><dd>러닝</dd></div>
+      </dl>
+
+      <!-- ✏️ 실습 3. 나를 한 줄로 소개해 보세요 -->
+      <p class="lead">저를 얼마나 잘 아는지, 밸런스 게임으로 확인해 보세요!</p>
+
+      <button class="btn-primary" type="button" id="start-btn">밸런스 게임 시작하기 →</button>
+    </section>
+
+
+    <!-- =========================================================
+         화면 2. 밸런스 게임
+         ========================================================= -->
+    <section class="screen" id="game" hidden>
+      <div class="progress">
+        <p class="label">밸런스 게임 <span id="progress-text">1 / 5</span></p>
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+
+      <!-- ✏️ 실습 4. 밸런스 게임 질문 다섯 개를 내 것으로 바꿔 보세요.
+           - <h2> 안은 질문, 두 <button> 안은 보기 A와 B예요.
+           - data-my-answer="A" 부분이 "내 답"이에요. 내가 고르는 쪽을 A 또는 B로 적어요.
+           - 질문을 늘리거나 줄여도 돼요. <div class="question" ...> 부터 </div> 까지 한 덩어리를 복사하거나 지우면 돼요.
+
+           🤖 질문이 안 떠오르면 Claude에게 이렇게 물어보세요:
+              "대학생이 공감할 밸런스 게임 질문 5개를 A vs B 형태로 추천해 줘" -->
+
+      <div class="question" data-my-answer="A">
+        <h2>평생 하나만 먹어야 한다면?</h2>
+        <div class="choices">
+          <button type="button" data-choice="A">짜장면</button>
+          <span class="vs">VS</span>
+          <button type="button" data-choice="B">짬뽕</button>
+        </div>
+      </div>
+
+      <div class="question" data-my-answer="B">
+        <h2>시험 기간, 나는?</h2>
+        <div class="choices">
+          <button type="button" data-choice="A">벼락치기 밤샘</button>
+          <span class="vs">VS</span>
+          <button type="button" data-choice="B">미리미리 계획형</button>
+        </div>
+      </div>
+
+      <div class="question" data-my-answer="A">
+        <h2>여행 갈 때 나는?</h2>
+        <div class="choices">
+          <button type="button" data-choice="A">계획 꼼꼼히</button>
+          <span class="vs">VS</span>
+          <button type="button" data-choice="B">발길 닿는 대로</button>
+        </div>
+      </div>
+
+      <div class="question" data-my-answer="B">
+        <h2>주말에 나는?</h2>
+        <div class="choices">
+          <button type="button" data-choice="A">무조건 밖으로</button>
+          <span class="vs">VS</span>
+          <button type="button" data-choice="B">집에서 충전</button>
+        </div>
+      </div>
+
+      <div class="question" data-my-answer="A">
+        <h2>카톡 답장 스타일은?</h2>
+        <div class="choices">
+          <button type="button" data-choice="A">보자마자 바로</button>
+          <span class="vs">VS</span>
+          <button type="button" data-choice="B">몰아서 한 번에</button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         화면 3. 결과 (나와의 싱크로율)
+         ========================================================= -->
+    <section class="screen" id="result" hidden>
+      <p class="label">결과</p>
+      <h2 class="result-title"><span class="owner-name-copy">홍길동</span> 님과의 싱크로율</h2>
+      <p class="score"><span id="score">0</span>%</p>
+
+      <!-- ✏️ 실습 5. 점수에 따라 나오는 한마디를 바꿔 보세요.
+           data-min="80"은 "80% 이상이면 이 말을 보여 줘"라는 뜻이에요. 위에서부터 차례로 확인해요. -->
+      <ul class="messages" hidden>
+        <li data-min="100">소름! 혹시 제 분신이세요? 🫢</li>
+        <li data-min="80">거의 저예요. 우리 찐친 인정!</li>
+        <li data-min="60">꽤 잘 아시네요 😊</li>
+        <li data-min="40">반반! 앞으로 더 친해져요</li>
+        <li data-min="0">우리… 이제부터 알아가요 🙂</li>
+      </ul>
+      <p class="message" id="message"></p>
+
+      <!-- 문제별로 내 답과 비교한 목록이 여기에 자동으로 채워져요 -->
+      <ol class="review" id="review"></ol>
+
+      <button class="btn-primary" type="button" id="restart-btn">다시 하기</button>
+    </section>
+
+
+    <footer>
+      <!-- ✏️ 실습 6. 마지막 한 줄도 자유롭게 바꿔 보세요 -->
+      <p>2026.11.18 치원 바이브에서 만들었습니다.<br>GitHub에 저장하고 Vercel이 배포했습니다.</p>
+    </footer>
+  </main>
+
+
+  <!-- =========================================================
+       🔧 여기부터는 화면을 넘기고 점수를 세는 동작 코드예요.
+       실습에서는 고치지 않아도 돼요. 위의 내용만 바꾸면 알아서 반영돼요.
+
+       🤖 기능을 더 넣고 싶다면 이 파일을 통째로 Claude에 붙여넣고 이렇게 부탁해 보세요:
+          "결과 화면에 '친구에게 공유하기' 버튼을 넣어 줘. 디자인은 style.css에 넣고,
+           HTML과 CSS 파일을 나눠서 바뀐 부분을 알려 줘."
+       ========================================================= -->
+  <script>
+    const screens = {
+      intro: document.getElementById('intro'),
+      game: document.getElementById('game'),
+      result: document.getElementById('result'),
+    };
+    const questions = Array.from(document.querySelectorAll('.question'));
+    const ownerName = document.getElementById('owner-name').textContent.trim();
+    let current = 0;
+    let picks = [];
+
+    document.querySelectorAll('.owner-name-copy').forEach((el) => { el.textContent = ownerName; });
+
+    function show(name) {
+      Object.entries(screens).forEach(([key, el]) => { el.hidden = key !== name; });
+      window.scrollTo(0, 0);
+    }
+
+    function showQuestion(index) {
+      questions.forEach((q, i) => { q.hidden = i !== index; });
+      document.getElementById('progress-text').textContent = `${index + 1} / ${questions.length}`;
+      document.getElementById('progress-fill').style.width = `${(index / questions.length) * 100}%`;
+    }
+
+    function startGame() {
+      current = 0;
+      picks = [];
+      document.querySelectorAll('.choices button').forEach((b) => b.classList.remove('picked'));
+      showQuestion(0);
+      show('game');
+    }
+
+    function showResult() {
+      let same = 0;
+      const review = document.getElementById('review');
+      review.innerHTML = '';
+
+      questions.forEach((q, i) => {
+        const mine = q.dataset.myAnswer.trim().toUpperCase();
+        const theirs = picks[i];
+        const label = (c) => q.querySelector(`[data-choice="${c}"]`).textContent.trim();
+        const match = mine === theirs;
+        if (match) same += 1;
+
+        const li = document.createElement('li');
+        li.className = match ? 'match' : 'miss';
+        li.innerHTML = `
+          <span class="review-q"></span>
+          <span class="review-a"><span class="who"></span>: <b></b> · 나: <b></b></span>`;
+        li.querySelector('.review-q').textContent = q.querySelector('h2').textContent.trim();
+        li.querySelector('.who').textContent = ownerName;
+        const bolds = li.querySelectorAll('b');
+        bolds[0].textContent = label(mine);
+        bolds[1].textContent = label(theirs);
+        review.appendChild(li);
+      });
+
+      const score = Math.round((same / questions.length) * 100);
+      document.getElementById('score').textContent = score;
+
+      const message = Array.from(document.querySelectorAll('.messages li'))
+        .find((li) => score >= Number(li.dataset.min));
+      document.getElementById('message').textContent = message ? message.textContent : '';
+
+      show('result');
+    }
+
+    document.querySelectorAll('.choices button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (picks.length > current) return; // 두 번 눌림 방지
+        picks.push(btn.dataset.choice);
+        btn.classList.add('picked');
+        setTimeout(() => {
+          current += 1;
+          if (current < questions.length) showQuestion(current);
+          else showResult();
+        }, 250);
+      });
+    });
+
+    document.getElementById('start-btn').addEventListener('click', startGame);
+    document.getElementById('restart-btn').addEventListener('click', () => show('intro'));
+  </script>
+</body>
+</html>
